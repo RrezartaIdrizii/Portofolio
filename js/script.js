@@ -7,7 +7,7 @@ var typed = new Typed (".typing",{
 })
 // Aside
 const nav = document.querySelector(".nav"),
-navList =nav.querySelector("li"),
+navList =nav.querySelectorAll("li"),
 totalNavList=navList.length,
 allSection = document.querySelectorAll(".section"),
 totalSection = allSection.length;
@@ -24,7 +24,7 @@ for(let i=0;i<totalNavList;i++){
                 addBackSection(j);
                 //allSection[j].classList.add("back-section");
             }
-            navList[j].querySelector("a").classList.remove("active")
+            navList[j].querySelector("a").classList.remove("active");
         }
         this.classList.add("active")
         showSection(this);
@@ -33,22 +33,30 @@ for(let i=0;i<totalNavList;i++){
         }
     })
 }
+
+
 function removeBackSection(){
     for(let i=0; i<totalSection;i++){
         allSection[i].classList.remove("back-section");
     }
 }
-function addBackSection(){
+
+
+function addBackSection(num){
     allSection[num].classList.add("back-section");
 }
+
+
 function showSection(element){
 
     for(let i=0; i<totalSection;i++){
         allSection[i].classList.remove("active");
     }
     const target=element.getAttribute("href").split("#")[1];
-    document.querySelector("#" + target).classList.add("active")
+    document.querySelector("#" + target).classList.add("active");
 }
+
+
 function updateNav(element){
     for (let i=0;i<totalNavList;i++){
         navList[i].querySelector("a").classList.remove("active");
@@ -59,7 +67,10 @@ function updateNav(element){
         }
     }
 }
-document.querySelector("hire-me").addEventListener("click", function(){
+
+
+document.querySelector(".hire-me").addEventListener("click", function()
+{
     const sectionIndex = this.getAttribute("data-section-index");
    // console.log(sectionIndex);
     showSection(this);
@@ -67,16 +78,21 @@ document.querySelector("hire-me").addEventListener("click", function(){
     removeBackSection();
     addBackSection(sectionIndex);
 })
-const navTogglerBtn = document.querySelector("nav-toggler"),
+const navTogglerBtn = document.querySelector(".nav-toggler"),
 aside=document.querySelector(".aside");
-navTogglerBtn.addEventListener("click",() =>{
+navTogglerBtn.addEventListener("click",() =>
+{
     asideSectionTogglerBtn();
 })
+
+
+
 function asideSectionTogglerBtn()
 {
     aside.classList.toggle("open");
     navTogglerBtn.classList.toggle("open");
-    for(let i=0;i<totalSection;i++){
+    for(let i=0; i<totalSection; i++)
+    {
         allSection[i].classList.toggle("open");
     }
 }
